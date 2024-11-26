@@ -26,7 +26,6 @@ export class FormularioClienteComponent implements OnInit {
     if (this.formularioCliente.valid) {
       const cliente = this.formularioCliente.value;
       console.log(cliente);
-      // Aquí puedes agregar la lógica para guardar el cliente en tu base de datos
     } else {
       console.log('El formulario no es válido');
     }
