@@ -1,80 +1,151 @@
-<button type="button" class="btn btn-primary" (click)="abrirFormularioCrearProducto()">Crear Producto</button>
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Cantidad disponible</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let producto of productos">
-        <td>{{ producto.nombre }}</td>
-        <td>{{ producto.descripcion }}</td>
-        <td>{{ producto.precio }}</td>
-        <td>{{ producto.cantidadDisponible }}</td>
-        <td>
-          <button class="btn btn-primary btn-sm" (click)="editarProducto(producto)">
-            Editar
-          </button>
-          <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto)">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<button
+  type="button"
+  class="btn btn-success mb-3"
+  (click)="abrirFormularioCrearProducto()"
+>
+  Crear Producto
+</button>
+<table class="table table-hover table-bordered shadow-sm bg-light">
+  <thead class="table-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Cantidad Disponible</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos" class="align-middle">
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.descripcion }}</td>
+      <td>${{ producto.precio | number:'1.2-2' }}</td>
+      <td>{{ producto.cantidadDisponible }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm me-2" (click)="editarProducto(producto)">
+          Editar
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Modal para productos -->
-<div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- Modal para editar producto -->
+<div
+  class="modal fade"
+  id="modalEditarProducto"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarModal()" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="cerrarModal()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="nombreProducto" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" [(ngModel)]="productoSeleccionado.nombre">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="nombreProducto" class="form-label">Nombre:</label>
+              <input
+                type="text"
+                class="form-control border-secondary"
+                id="nombreProducto"
+                name="nombreProducto"
+                [(ngModel)]="productoSeleccionado.nombre"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="descripcionProducto" class="form-label">Descripción:</label>
+              <input
+                type="text"
+                class="form-control border-secondary"
+                id="descripcionProducto"
+                name="descripcionProducto"
+                [(ngModel)]="productoSeleccionado.descripcion"
+              />
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="descripcionProducto" class="col-form-label">Descripción:</label>
-            <input type="text" class="form-control" id="descripcionProducto" name="descripcionProducto" [(ngModel)]="productoSeleccionado.descripcion">
-          </div>
-          <div class="mb-3">
-            <label for="precioProducto" class="col-form-label">Precio:</label>
-            <input type="number" class="form-control" id="precioProducto" name="precioProducto" [(ngModel)]="productoSeleccionado.precio">
-          </div>
-          <div class="mb-3">
-            <label for="fotoProducto" class="col-form-label">Foto:</label>
-            <input type="file" class="form-control" id="fotoProducto" name="fotoProducto" accept="image/*" (change)="cargarFoto($event)">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="precioProducto" class="form-label">Precio:</label>
+              <input
+                type="number"
+                class="form-control border-secondary"
+                id="precioProducto"
+                name="precioProducto"
+                [(ngModel)]="productoSeleccionado.precio"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="fotoProducto" class="form-label">Foto:</label>
+              <input
+                type="file"
+                class="form-control border-secondary"
+                id="fotoProducto"
+                name="fotoProducto"
+                accept="image/*"
+                (change)="cargarFoto($event)"
+              />
+            </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="cerrarModal()" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="guardarCambiosProducto()">Guardar cambios</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+          (click)="cerrarModal()"
+        >
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="guardarCambiosProducto()"
+        >
+          Guardar cambios
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Modal para crear producto -->
-<div class="modal fade" id="modalCrearProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div
+  class="modal fade"
+  id="modalCrearProducto"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-success text-white">
         <h5 class="modal-title" id="exampleModalLabel">Crear Producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarModalCrear()" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="cerrarModalCrear()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <app-formulario-producto></app-formulario-producto>
       </div>
     </div>
-  </div>
+  </div>
 </div>

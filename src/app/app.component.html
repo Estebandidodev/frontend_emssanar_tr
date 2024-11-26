@@ -1,11 +1,13 @@
-<div class="header" style="width: 100%; background-color: #007bff; padding: 20px; text-align: center;">
-  <h1 class="text-muted">Prueba Emssanar EPS</h1>
-  <h2 class="text-muted">Esteban Dario Pantoja Huertas - 2024</h2>
-  <button class="btn btn-light" (click)="mostrarClientes()">Clientes</button>
-  <button class="btn btn-light" (click)="mostrarProductos()">Productos</button>
+<div class="header bg-dark text-light py-4 text-center">
+  <h1 class="font-weight-bold">Prueba Emssanar EPS</h1>
+  <h2 class="font-italic">Esteban Dario Pantoja Huertas - 2024</h2>
+  <div class="btn-group mt-3" role="group">
+    <button class="btn btn-outline-light" (click)="mostrarClientes()">Clientes</button>
+    <button class="btn btn-outline-light" (click)="mostrarProductos()">Productos</button>
+  </div>
 </div>
 
-<div class="container" style="margin-top: 20px;">
+<div class="container mt-4">
   <app-clientes *ngIf="mostrarTablaClientes"></app-clientes>
   <app-productos *ngIf="mostrarTablaProductos"></app-productos>
-  </div>
+</div>

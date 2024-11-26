@@ -1,81 +1,146 @@
-<button type="button" class="btn btn-primary" (click)="abrirFormularioCrearCliente()">Crear Cliente</button>
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cliente of clientes">
-        <td>{{ cliente.nombre }}</td>
-        <td>{{ cliente.apellido }}</td>
-        <td>{{ cliente.correoElectronico }}</td>
-        <td>{{ cliente.telefono }}</td>
-        <td>
-          <button class="btn btn-primary btn-sm" (click)="editarCliente(cliente)">
-            Editar
-          </button>
-          <button class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente)">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<button
+  type="button"
+  class="btn btn-success mb-3"
+  (click)="abrirFormularioCrearCliente()"
+>
+  Crear Cliente
+</button>
+<table class="table table-hover table-bordered shadow-sm bg-white">
+  <thead class="table-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes" class="align-middle">
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.apellido }}</td>
+      <td>{{ cliente.correoElectronico }}</td>
+      <td>{{ cliente.telefono }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm me-2" (click)="editarCliente(cliente)">
+          Editar
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-  <!-- Modal -->
-<div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- Modal para editar cliente -->
+<div
+  class="modal fade"
+  id="modalEditarCliente"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarModal()" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="cerrarModal()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="nombre" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="clienteSeleccionado.nombre">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input
+                type="text"
+                class="form-control border-secondary"
+                id="nombre"
+                name="nombre"
+                [(ngModel)]="clienteSeleccionado.nombre"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="apellido" class="form-label">Apellido:</label>
+              <input
+                type="text"
+                class="form-control border-secondary"
+                id="apellido"
+                name="apellido"
+                [(ngModel)]="clienteSeleccionado.apellido"
+              />
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="apellido" class="col-form-label">Apellido:</label>
-            <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="clienteSeleccionado.apellido">
-          </div>
-          <div class="mb-3">
-            <label for="correoElectronico" class="col-form-label">Correo Electrónico:</label>
-            <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" [(ngModel)]="clienteSeleccionado.correoElectronico">
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="col-form-label">Teléfono:</label>
-            <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="clienteSeleccionado.telefono">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="correoElectronico" class="form-label">Correo Electrónico:</label>
+              <input
+                type="email"
+                class="form-control border-secondary"
+                id="correoElectronico"
+                name="correoElectronico"
+                [(ngModel)]="clienteSeleccionado.correoElectronico"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="telefono" class="form-label">Teléfono:</label>
+              <input
+                type="text"
+                class="form-control border-secondary"
+                id="telefono"
+                name="telefono"
+                [(ngModel)]="clienteSeleccionado.telefono"
+              />
+            </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar cambios</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+          (click)="cerrarModal()"
+        >
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-success" (click)="guardarCambios()">
+          Guardar cambios
+        </button>
       </div>
     </div>
   </div>
 </div>
 
-
 <!-- Modal para crear cliente -->
-<div class="modal fade" id="modalCrearCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div
+  class="modal fade"
+  id="modalCrearCliente"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-success text-white">
         <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cerrarModalCrear()" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="cerrarModalCrear()"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <app-formulario-cliente></app-formulario-cliente>
       </div>
     </div>
-  </div>
+  </div>
 </div>
