@@ -40,6 +40,9 @@ export class ClientesComponent implements OnInit {
   eliminarCliente(cliente: Cliente): void {
     // Implementar la lógica para eliminar el cliente
     console.log('Eliminar cliente:', cliente);
+    this.clienteService.eliminarCliente(cliente.id).subscribe(clientes => {
+      this.obtenerClientes();
+    });
   }
 
   editarCliente(cliente: Cliente): void {

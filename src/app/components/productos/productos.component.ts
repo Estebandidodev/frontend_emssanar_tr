@@ -84,6 +84,9 @@ export class ProductosComponent {
   eliminarProducto(producto: Producto): void {
     // Implementar la lógica para eliminar el producto
     console.log('Eliminar producto:', producto);
+    this.productoService.eliminarProducto(producto.id).subscribe(productos => {
+      this.obtenerProductos();
+    });
   }
   cerrarModal(): void {
     const modal = document.getElementById('modalEditarProducto');

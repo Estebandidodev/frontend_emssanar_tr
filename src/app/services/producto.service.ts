@@ -28,7 +28,7 @@ export class ProductoService {
     return this.http.put<Producto>(this.apiUrl, producto);
   }
 
-  eliminarProducto(id: number): Observable<any> {
+  eliminarProducto(id: number | undefined): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
