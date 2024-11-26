@@ -86,7 +86,7 @@ export class ProductosComponent {
     console.log('Eliminar producto:', producto);
   }
   cerrarModal(): void {
-    const modal = document.getElementById('modalEditarCliente');
+    const modal = document.getElementById('modalEditarProducto');
     if (modal) {
       modal.classList.remove('show');
       modal.style.display = 'none';

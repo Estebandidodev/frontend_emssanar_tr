@@ -41,9 +41,18 @@ export class FormularioProductoComponent implements OnInit {
       );
       this.productoService.crearProducto(this.producto).subscribe(() => {
         console.log('Producto creado con éxito');
+        this.cerrarModalCrear();
       });
     } else {
       console.log('El formulario no es válido');
     }
   }
+
+cerrarModalCrear(): void {
+  const modal = document.getElementById('modalCrearProducto');
+  if (modal) {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  }
+}
 }
