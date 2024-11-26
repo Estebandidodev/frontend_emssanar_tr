@@ -1,0 +1,27 @@
+<form [formGroup]="formularioCliente" class="needs-validation" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+        <div class="invalid-feedback">Por favor, ingresa un nombre válido.</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="apellido">Apellido</label>
+        <input type="text" class="form-control" id="apellido" formControlName="apellido" required>
+        <div class="invalid-feedback">Por favor, ingresa un apellido válido.</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correoElectronico">Correo electrónico</label>
+        <input type="email" class="form-control" id="correoElectronico" formControlName="correoElectronico" required>
+        <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="telefono">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" formControlName="telefono" required>
+        <div class="invalid-feedback">Por favor, ingresa un teléfono válido.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary"  (click)="guardarCliente()">Guardar</button>
+  </form>
